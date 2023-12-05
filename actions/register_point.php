@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+//Limpar o buffer
+ob_start();
+
 include_once("../db/conexao.php");
     //Definir fuso horário padrão
     date_default_timezone_set('America/Sao_Paulo');
@@ -70,7 +75,11 @@ include_once("../db/conexao.php");
             $text_tipo_registro = "entrada"; 
         }
     }else{
-        echo "Nenhum ponto encontrado";
+         //Tipo de registro
+         $tipo_registro = "entrada";
+
+         //Texto parcial que deve ser apresentado para o usuário
+         $text_tipo_registro = "entrada"; 
     }
 
     //verificar o tipo de registro, novo ponto ou editar registro existente
@@ -107,8 +116,10 @@ include_once("../db/conexao.php");
 
     //Acessa o IF quando cadastrar com sucesso
     if($cad_horario->rowCount()){
-        echo "<p style='color: green;'>Horário de $text_tipo_registro cadastrado com sucesso!</p>";
+        $_SESSION ['msg'] = "<p style='color: green;'>Horário de $text_tipo_registro cadastrado com sucesso!</p>";
+        header("Location:../index.php");
     }else{
-        echo "<p style='color: red;'>Horário de $text_tipo_registro não cadastrado com sucesso!</p>";
+        $_SESSION ['msg'] = "<p style='color: red;'>Horário de $text_tipo_registro não cadastrado com sucesso!</p>";
+        header("Location:../index.php");
     }
 ?>

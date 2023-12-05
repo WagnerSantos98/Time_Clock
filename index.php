@@ -1,5 +1,5 @@
 <?php
-
+session_start();
     //Definir fuso horário padrão
     date_default_timezone_set('America/Sao_Paulo');
 ?>
@@ -13,10 +13,17 @@
 <body>
     <h1>Registar Ponto</h1>
 
+    <?php
+        if(isset($_SESSION['msg'])){
+            echo $_SESSION['msg'];
+            unset($_SESSION['msg']);
+        }
+  ?>
+
     <!--Seletor horário-->
     <p id="horario"><?php echo date("d/m/Y H:i:s"); ?></p>
 
-    <a href="actrions/register_point.php">Registar</a>
+    <a href="actions/register_point.php">Registar</a>
 
     <script src="js/app.js"></script>
 </body>
