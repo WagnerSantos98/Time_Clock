@@ -82,10 +82,34 @@ session_start();
                     <input type="text" name="nome_completo" class="validate">
                     <label for="nome_completo">Nome Completo</label>
                 </div>
+                <div class="input-field col s4">
+                    <input type="text" name="numero_registro" class="validate">
+                    <label for="numero_registro">Nº de Registro</label>
+                </div>
+            </div>
+            <div class="row">
                 <div class="input-field col s6">
-                    <input type="text" name="email" class="validate">
+                    <input type="text" name="celular" class="validate">
+                    <label for="cargo">Cargo</label>
+                </div>
+                <div class="input-field col s6">
+                    <input type="text" name="setor" class="validate">
+                    <label for="setor">Setor</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" name="cargo" class="validate">
+                    <label for="celular">Celular</label>
+                </div>
+                <div class="input-field col s6">
+                    <input type="email" name="email" class="validate">
                     <label for="email">Email</label>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <a class="waves-effect waves-light btn green lighten-1">Salvar</a>
+                <a class="modal-close waves-effect waves-light btn red lighten-1">Cancelar</a>
             </div>
         </form>
     </div>
