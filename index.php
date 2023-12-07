@@ -13,16 +13,20 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <!--Compiled Google Material Icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
     <script src="assets/js/app.js"></script>
+    <script src="assets/js/materialize-functions.js"></script>
     <title>Relógio de Ponto</title>
 </head>
 <body>
 
   <div class="container">
-    <div class="card-panel grey ligthen-2">
+    <div class="card-panel grey lighten-5">
         <div class="row">
             <h1>Relógio de Ponto</h1>
             <form class="col s12">
@@ -37,7 +41,7 @@ session_start();
                         <label for="">Colaborador</label>
                         <select name="" id="">
                             <option value=""><?php
-                            if(isset($_SESSION['nome_colaborador'])){
+                            if(isset($_SESSION['n           '])){
                                 echo $_SESSION['nome_colaborador'];
                             }
                             ?></option>
@@ -57,16 +61,35 @@ session_start();
             </form>
         </div>
     </div>
+
+    <!--Menu - Cadastro-->
+    <div class="fixed-action-btn horizontal click-to-toggle spin-close">
+        <a class="btn-floating btn-large red"><i class="material-icons">menu</i></a>
+        <ul>
+            <li title="Cadastrar"><a class="waves-effec waves-light btn-floating grey lighten-1 modal-trigger" href="#modal-cadastro"><i class="material-icons">add</i></a></li>
+        </ul>
+    </div>
   </div>
 
-    
-
-    <!--<a href="actions/register_point.php">Registar</a>-->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems);
-  });
-</script>
+  <!--Modal Cadastro de Usuário (Colaborador)-->  
+  <div id="modal-cadastro" class="modal">
+    <div class="modal-content">
+        <h4>Cadastro de Usuário</h4>
+    <div class="row">
+        <form action="" class="col s12">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" name="nome_completo" class="validate">
+                    <label for="nome_completo">Nome Completo</label>
+                </div>
+                <div class="input-field col s6">
+                    <input type="text" name="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+  </div>                              
 </body>
 </html>
