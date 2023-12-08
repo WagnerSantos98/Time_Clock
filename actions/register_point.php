@@ -19,11 +19,11 @@ include_once("../db/conexao.php");
     $id_usuario = 1;
 
     //Recuperar o último ponto do usuário
-    $sql_ponto = "SELECT id AS id_ponto, saida_intervalo, retorno_intervalo, saida FROM pontos WHERE usuario_id =:usuario_id ORDER BY id DESC LIMIT 1";
+    $sql_ponto = "SELECT id AS id_ponto, saida_intervalo, retorno_intervalo, saida FROM pontos WHERE colaborador_id =:colaborador_id ORDER BY id DESC LIMIT 1";
 
     $result_ponto = $conn->prepare($sql_ponto);
 
-    $result_ponto->bindParam(':usuario_id',$id_usuario);
+    $result_ponto->bindParam(':colaborador_id',$id_usuario);
 
     //Executar a QUERY
     $result_ponto->execute();
@@ -98,7 +98,7 @@ include_once("../db/conexao.php");
             break;
 
         default:
-           $query_horario = "INSERT INTO pontos (data_entrada, entrada, usuario_id) VALUES (:data_entrada, :data_entrada, :usuario_id)";
+           $query_horario = "INSERT INTO pontos (data_entrada, entrada, colaborador_id) VALUES (:data_entrada, :data_entrada, :colaborador_id)";
 
            //Preparar a Query
            $cad_horario = $conn->prepare($query_horario);
@@ -106,7 +106,7 @@ include_once("../db/conexao.php");
            //Substituir o link da Query pelo valor
            $cad_horario->bindParam(':data_entrada',$data_entrada);
            $cad_horario->bindParam(':entrada',$horario_atual);
-           $cad_horario->bindParam(':usuario_id',$id_usuario);
+           $cad_horario->bindParam(':colaborador_id',$id_usuario);
         break;
 
     }
@@ -116,7 +116,7 @@ include_once("../db/conexao.php");
 
     //Acessa o IF quando cadastrar com sucesso
     if($cad_horario->rowCount()){
-        $_SESSION ['msg'] = "<p style='color: green;'>Horário de $text_tipo_registro cadastrado com sucesso!</p>";
+        $_SESSION ['msg'] = "<p style='color: white;'>Horário de $text_tipo_registro cadastrado com sucesso!</p>";
         header("Location:../index.php");
     }else{
         $_SESSION ['msg'] = "<p style='color: red;'>Horário de $text_tipo_registro não cadastrado com sucesso!</p>";
