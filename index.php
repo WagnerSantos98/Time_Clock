@@ -1,7 +1,47 @@
 <?php
 session_start();
+
+include_once("db/conexao.php");
     //Definir fuso horário padrão
     date_default_timezone_set('America/Sao_Paulo');
+$proxNumeroRegistro = 1;
+
+    if (isset($_POST['cadastrar_usuario'])) {
+        // Obtenha o próximo número de registro
+        $query = "SELECT MAX(numero_registro) AS max_registro FROM colaboradores";
+        $result = $conn->query($query);
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+        $proxNumeroRegistro = $row['max_registro'] + 1;
+    
+        // Dados do formulário
+        $nomeCompleto = $_POST["nome_completo"];
+        $cargo = $_POST["cargo"];
+        $setor = $_POST["setor"];
+        $celular = $_POST["celular"];
+        $email = $_POST["email"];
+    
+        // Inserir dados na tabela 'colaboradores'
+        $sql_register = "INSERT INTO colaboradores (nome_completo, numero_registro, cargo, setor, celular, email)
+                            VALUES (:nome_completo, :numero_registro, :cargo, :setor, :celular, :email)";
+        
+        // Prepare a declaração
+        $stmt = $conn->prepare($sql_register);
+    
+        // Vincule os parâmetros
+        $stmt->bindParam(':nome_completo', $nomeCompleto);
+        $stmt->bindParam(':numero_registro', $proxNumeroRegistro);
+        $stmt->bindParam(':cargo', $cargo);
+        $stmt->bindParam(':setor', $setor);
+        $stmt->bindParam(':celular', $celular);
+        $stmt->bindParam(':email', $email);
+        
+        // Execute a inserção
+        $stmt->execute();
+
+        var_dump ("Valor de proxNumeroRegistro após a execução: " . $proxNumeroRegistro);
+
+    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -76,14 +116,14 @@ session_start();
     <div class="modal-content">
         <h4>Cadastro de Usuário</h4>
     <div class="row">
-        <form action="" class="col s12">
+        <form action="actions/register_user.php" method="post" class="col s12">
             <div class="row">
                 <div class="input-field col s6">
                     <input type="text" name="nome_completo" class="validate">
                     <label for="nome_completo">Nome Completo</label>
                 </div>
                 <div class="input-field col s4">
-                    <input type="text" name="numero_registro" class="validate">
+                    <input type="text" name="numero_registro" class="validate" value="<?= $proxNumeroRegistro; ?>" readonly> 
                     <label for="numero_registro">Nº de Registro</label>
                 </div>
             </div>
@@ -108,7 +148,7 @@ session_start();
                 </div>
             </div>
             <div class="modal-footer">
-                <a class="waves-effect waves-light btn green lighten-1">Salvar</a>
+                <button name="cadastrar_usuario" type="submit" class="waves-effect waves-light btn green lighten-1">Salvar</button>
                 <a class="modal-close waves-effect waves-light btn red lighten-1">Cancelar</a>
             </div>
         </form>
