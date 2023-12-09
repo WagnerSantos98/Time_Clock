@@ -1,8 +1,10 @@
 <?php
 include_once("db/conexao.php");
+
     //Definir fuso horário padrão
     date_default_timezone_set('America/Sao_Paulo');
-    
+        
+     
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -22,6 +24,8 @@ include_once("db/conexao.php");
     <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/materialize-functions.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Relógio de Ponto</title>
 </head>
 <body>
@@ -39,14 +43,19 @@ include_once("db/conexao.php");
 
                 <div class="col m4">
                     <div class="card-panel teal">
-                        <label for="">Colaborador</label>
-                        <select name="" id="">
-                            <option value=""><?php
-                            if(isset($_SESSION['n           '])){
-                                echo $_SESSION['nome_colaborador'];
-                            }
-                            ?></option>
-                        </select>
+                        <form action="actions/consulta.php" method="post">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <label for="number_register">Nº de Registro</label>
+                                    <input id="number_register" type="text" name="number_register" class="validate">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="colaborador" type="text" name="colaborador" class="validate" readonly disabled>
+                                </div>
+                            </div>
+                        </form>
                         <a href="actions/register_point.php" class="btn btn-primary">Entrada</a>
                         <a href="actions/register_point.php" class="btn btn-primary">Saída</a>
                         <div class="alert alert-primary" role="alert">
@@ -115,6 +124,10 @@ include_once("db/conexao.php");
         </form>
     </div>
     </div>
-  </div>                              
+  </div>  
+  
+  <script>
+   
+  </script>
 </body>
 </html>
