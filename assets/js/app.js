@@ -5,3 +5,5 @@ function atualizarHorario() {
     document.getElementById("horario").innerHTML = data.replace(", ", " ");
 }
 setInterval(atualizarHorario, 1000);
+
+

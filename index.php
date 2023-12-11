@@ -21,11 +21,11 @@ include_once("db/conexao.php");
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/materialize-functions.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Relógio de Ponto</title>
 </head>
 <body>
@@ -99,7 +99,7 @@ include_once("db/conexao.php");
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input type="text" name="celular" class="validate">
+                    <input type="text" name="cargo" class="validate">
                     <label for="cargo">Cargo</label>
                 </div>
                 <div class="input-field col s6">
@@ -109,7 +109,7 @@ include_once("db/conexao.php");
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input type="text" name="cargo" class="validate">
+                    <input type="text" name="celular" id="celular" class="validate">
                     <label for="celular">Celular</label>
                 </div>
                 <div class="input-field col s6">
@@ -126,8 +126,12 @@ include_once("db/conexao.php");
     </div>
   </div>  
   
-  <script>
-   
-  </script>
+
+
+<script>
+    $(document).ready(function(){
+    $('#celular').mask('(00)00000-0000');
+});
+</script>
 </body>
 </html>
