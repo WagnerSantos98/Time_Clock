@@ -56,8 +56,8 @@ include_once("db/conexao.php");
                                 </div>
                             </div>
                         </form>
-                        <a href="actions/register_point.php" class="btn btn-primary">Entrada</a>
-                        <a href="actions/register_point.php" class="btn btn-primary">Saída</a>
+                        <button type="submit" href="actions/register_point.php" class="btn btn-primary">Entrada</button>
+                        <button type="submit" href="actions/register_point.php" class="btn btn-primary">Saída</button>
                         <div class="alert alert-primary" role="alert">
                         <?php
                                 if(isset($_SESSION['msg'])){
