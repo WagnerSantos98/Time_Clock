@@ -10,16 +10,18 @@ include_once("../db/conexao.php");
     
     //Gerar o horário atual
     $horario_atual = date("H:i:s");
-    var_dump($horario_atual);
 
     //Gerar data atual no formato salvo em BD
-    $data_entrada = date('Y-m-d');
+    $data_entrada = date('Y/m/d');
 
     //ID fixo para teste
     $id_usuario = 1;
 
     //Recuperar o último ponto do usuário
-    $sql_ponto = "SELECT id AS id_ponto, saida_intervalo, retorno_intervalo, saida FROM pontos WHERE colaborador_id =:colaborador_id ORDER BY id DESC LIMIT 1";
+    $sql_ponto = "SELECT id AS id_ponto, saida_intervalo, retorno_intervalo, saida 
+                  FROM pontos 
+                  WHERE colaborador_id =:colaborador_id 
+                  ORDER BY id DESC LIMIT 1";
 
     $result_ponto = $conn->prepare($sql_ponto);
 
@@ -32,7 +34,6 @@ include_once("../db/conexao.php");
     if(($result_ponto)and ($result_ponto)->rowCount() != 0){
         //Realizar a leitura do registro
         $row_ponto = $result_ponto->fetch(PDO:: FETCH_ASSOC);
-        var_dump($row_ponto);
 
         //Extrair para imprimir através do nome da chave no array
         extract($row_ponto);
@@ -87,7 +88,8 @@ include_once("../db/conexao.php");
         //Acessa o case quando deve editar o registro
         case "editar": 
             //Query para editar no banco de dados
-            $query_horario = "UPDATE pontos SET $col_tipo_registro =:horario_atual WHERE id=:id LIMIT 1";
+            $query_horario = "UPDATE pontos SET $col_tipo_registro =:horario_atual 
+                              WHERE id=:id LIMIT 1";
 
             //Preparar a Query
             $cad_horario = $conn->prepare($query_horario);
@@ -96,8 +98,8 @@ include_once("../db/conexao.php");
             $cad_horario->bindParam(':horario_atual',$horario_atual);
             $cad_horario->bindParam(':id',$id_ponto);
             break;
-
         default:
+        
            $query_horario = "INSERT INTO pontos (data_entrada, entrada, colaborador_id) VALUES (:data_entrada, :data_entrada, :colaborador_id)";
 
            //Preparar a Query

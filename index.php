@@ -3,8 +3,7 @@ include_once("db/conexao.php");
 
     //Definir fuso horário padrão
     date_default_timezone_set('America/Sao_Paulo');
-        
-     
+   
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -43,7 +42,7 @@ include_once("db/conexao.php");
 
                 <div class="col m4">
                     <div class="card-panel teal">
-                        <form action="actions/consulta.php" method="post">
+                        <form action="actions/register_point" method="post">
                             <div class="row">
                                 <div class="input-field col s12">
                                     <label for="number_register">Nº de Registro</label>
@@ -56,8 +55,8 @@ include_once("db/conexao.php");
                                 </div>
                             </div>
                         </form>
-                        <button type="submit" href="actions/register_point.php" class="btn btn-primary">Entrada</button>
-                        <button type="submit" href="actions/register_point.php" class="btn btn-primary">Saída</button>
+                        <a href="actions/register_point.php" class="btn btn-primary">Entrada</a>
+                        <a href="actions/register_point.php" class="btn btn-primary">Saída</a>
                         <div class="alert alert-primary" role="alert">
                         <?php
                                 if(isset($_SESSION['msg'])){
